@@ -213,42 +213,11 @@ main .task .actions .delete {
   color: crimson;
 }
 
-@media (max-width: 767px) {
-  header form input[type="text"] {
-    font-size: 0.8rem;
-  }
-
-  main .task .text {
-    color: var(--light);
-    font-size: 0.8rem;
-  }
-
-  header form button {
-    font-size: 1rem;
-    padding: 0.5rem;
-  }
-
-  main .task .actions {
-    gap: 0.5rem;
-    flex-direction: column;
-  }
-
-  main .task .actions button {
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 350px) {
-  main .task .actions button {
-    font-size: 0.8rem;
-  }
-}
-
 .added-task,
 .deleted-task,
 .updated-task {
   position: absolute;
-  top: 30%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   height: 100px;
@@ -292,5 +261,42 @@ main .task .actions .delete {
   to {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@media (max-width: 767px) {
+  header form input[type="text"] {
+    font-size: 0.8rem;
+  }
+
+  main .task .text {
+    color: var(--light);
+    font-size: 0.8rem;
+  }
+
+  header form button {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+
+  main .task .actions {
+    gap: 0.5rem;
+    flex-direction: column;
+  }
+
+  main .task .actions button {
+    font-size: 0.9rem;
+  }
+
+  .added-task span,
+  .deleted-task span,
+  .updated-task span {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 350px) {
+  main .task .actions button {
+    font-size: 0.8rem;
   }
 }
