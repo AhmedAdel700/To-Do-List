@@ -80,6 +80,11 @@ header form input[type="text"] {
 
 header form input[type="text"]::placeholder {
   color: var(--gray);
+  transition: var(--transition);
+}
+
+header form input[type="text"]:focus::placeholder {
+  opacity: 0;
 }
 
 header form button {

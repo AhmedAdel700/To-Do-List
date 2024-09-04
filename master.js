@@ -32,7 +32,7 @@ function addTaskToUI(taskText, isChecked = false) {
     // Create The Complete Div Which Will Have Our Checkbox And A Paragraph
     let completeDiv = document.createElement('div');
     completeDiv.classList.add('complete');
-    
+
     let paragraphMessage = document.createElement('p');
     paragraphMessage.innerText = "Did You Complete Your Task ?";
     completeDiv.appendChild(paragraphMessage);
@@ -85,9 +85,14 @@ function addTaskToUI(taskText, isChecked = false) {
     let deleteBtn = document.createElement('button');
     deleteBtn.classList.add('delete');
     deleteBtn.innerHTML = 'Delete';
+
     deleteBtn.addEventListener('click', () => {
-        main.removeChild(container);
-        deleteTaskFromLocalStorage(taskText); // Remove the task from localStorage
+
+        // Ask For Confirmation Before Deleting The Task
+        if (confirm('Are You Sure You Want To Delete Your Task ?')) {
+            main.removeChild(container);
+            deleteTaskFromLocalStorage(taskText); // Remove the task from localStorage
+        }
     });
 
     // Check If The Checkbox Is Checked Or Not => "The Task Should Be Done Is Checked"
