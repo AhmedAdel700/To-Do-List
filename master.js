@@ -79,6 +79,9 @@ function addTaskToUI(taskText, isChecked = false) {
             // Update the task text in localStorage
             updateTaskInLocalStorage(taskText, input.value);
             taskText = input.value; // Update the taskText variable to the new value
+
+            // Render A Update Alert Message
+            alertMessage("updated-task");
         }
     });
 
@@ -148,6 +151,9 @@ function deleteTaskFromLocalStorage(taskText) {
     let tasks = getTasks();
     tasks = tasks.filter(task => task.text !== taskText);
     saveTasks(tasks);
+
+    //Render A Delete Alert Message
+    alertMessage("deleted-task");
 }
 
 // Function to load tasks from localStorage
@@ -179,112 +185,40 @@ taskForm.addEventListener('submit', (e) => {
     tasks.push({ text: taskText, isChecked: false });
     saveTasks(tasks);
 
+    alertMessage("added-task");
+
     // Clear The Input After Submission
     inputText.value = '';
 });
 
 
-// // Get The Variables
-// let main = document.querySelector('main'),
-//     taskForm = document.querySelector('.tasks-form'),
-//     addBtn = document.querySelector('.add-btn'),
-//     inputText = document.querySelector('.input-text');
+// Function to Add An Alert When A Task Is Added , Deleted or Updated To The UI
+function alertMessage(action) {
 
+    if (!action) {
+        return; // Return If The Action Is Not Specified Return Nothing
+    }
 
-// taskForm.addEventListener('submit', (e) => {
-//     // Prevent The Form From Submission
-//     e.preventDefault();
+    let addAlert = document.createElement('div');
+    addAlert.classList.add(action);
 
-//     // Get The Value Of The Input => "The Task Text"
-//     const taskText = inputText.value;
+    let alertSpan = document.createElement('span');
 
-//     // Check If The Task Text Is Empty Or Not
-//     if (!taskText) {
-//         alert('Please Enter A Task');
-//         return;
-//     }
+    // Check What Action Is The User Doing
+    if (action === "added-task") {
+        alertSpan.innerText = 'Task Has Been Added Successfully!';
+    } else if (action === "deleted-task") {
+        alertSpan.innerText = 'Task Has Been Deleted Successfully!';
+    } else if (action === "updated-task") {
+        alertSpan.innerText = 'Task Has Been Updated Successfully!';
+    }
 
-//     // Create The Container
-//     let container = document.createElement('section');
-//     container.classList.add('container');
+    addAlert.appendChild(alertSpan);
 
-//     // Create The Checkbox That Will Be Used For Marking The Task As Done
-//     let checkbox = document.createElement('input');
-//     checkbox.type = 'checkbox';
-//     checkbox.classList.add('checkbox');
+    // Add The Alert To The Main Div
+    main.appendChild(addAlert);
 
-//     // Add The Checkbox To The Container
-//     container.appendChild(checkbox);
-
-//     // Create The Task Div That Will Have The Whole Ui Of The Task Except The Chechbox
-//     let task = document.createElement('div');
-//     task.classList.add('task');
-
-//     // Create The Task Input That Will Have The Task Text And Buttons
-//     let content = document.createElement('div');
-//     content.classList.add('content');
-
-//     // Create The Task Input That Will Show Our Task Text After The Submittion
-//     let input = document.createElement('textarea');
-//     input.classList.add('text');
-//     input.value = taskText;
-//     input.setAttribute('readonly', 'readonly');
-
-//     // Create The Action Div That Will Have The Buttons
-//     let action = document.createElement('div');
-//     action.classList.add('actions');
-
-//     // Create The Buttons That Will Handle The Task Operations
-//     let editBtn = document.createElement('button');
-//     editBtn.classList.add('edit');
-//     editBtn.innerText = 'Edit';
-
-//     editBtn.addEventListener('click', () => {
-
-//         if (editBtn.innerHTML === 'Edit') {
-//             input.removeAttribute('readonly');
-//             input.focus();
-//             editBtn.innerText = 'Save';
-//         } else {
-//             input.setAttribute('readonly', 'readonly');
-//             editBtn.innerText = 'Edit';
-//         }
-//     });
-
-//     let deleteBtn = document.createElement('button');
-//     deleteBtn.classList.add('delete');
-//     deleteBtn.innerHTML = 'Delete';
-//     deleteBtn.addEventListener('click', () => {
-//         main.removeChild(container);
-//     });
-
-//     // Check If The Checkbox Is Checked Or Not => "The Task Should Be Done Is Checked"
-//     checkbox.addEventListener('change', () => {
-
-//         if (checkbox.checked) {
-//             task.classList.add('done');
-//             editBtn.setAttribute("disabled", 'disabled');
-//             deleteBtn.setAttribute("disabled", 'disabled');
-//         } else {
-//             task.classList.remove('done');
-//             editBtn.removeAttribute("disabled");
-//             deleteBtn.removeAttribute("disabled");
-//         }
-//     })
-
-//     // Add The Buttons To The Action Div Then Add The Action Div To Content Then Add Content To The Task Div
-//     action.appendChild(editBtn);
-//     action.appendChild(deleteBtn);
-
-
-//     // Add The Input To Content Then Add Content To The Task Div And The Add Both The Main
-//     content.appendChild(input);
-//     task.appendChild(content);
-//     task.appendChild(action);
-//     container.appendChild(task);
-//     main.appendChild(container);
-
-//     // Clear The From After Submmition
-//     inputText.value = '';
-// })
-
+    setInterval(() => {
+        addAlert.remove(); // Remove The Alert After 1.5 Seconds
+    }, 1500)
+}

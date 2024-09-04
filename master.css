@@ -243,3 +243,54 @@ main .task .actions .delete {
     font-size: 0.8rem;
   }
 }
+
+.added-task,
+.deleted-task,
+.updated-task {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: var(--darkest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: pop-up var(--transition) ease-in-out;
+}
+
+.added-task span,
+.deleted-task span,
+.updated-task span {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.5rem;
+  font-weight: 700;
+  z-index: 150;
+}
+
+.added-task span {
+  background-image: linear-gradient(to right, #15be15, #35bd9f);
+}
+
+.deleted-task span {
+  background-image: linear-gradient(to right, #ec487f, crimson);
+}
+
+.updated-task span {
+  background-image: linear-gradient(to right, #3c6ef9, #57acf1);
+}
+
+@keyframes pop-up {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
