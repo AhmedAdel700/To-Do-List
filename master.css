@@ -1,0 +1,240 @@
+/*
+Variables
+*/
+
+:root {
+  --dark: #374151;
+  --darker: #1f2937;
+  --darkest: #111827;
+  --gray: #6b7280;
+  --light: #eee;
+  --pink: #ec4899;
+  --purple: #8b5cf6;
+  --transition: 0.4s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Fira Sans", sans-serif;
+}
+
+body {
+  background-color: var(--dark);
+  color: var(--light);
+  min-height: 100vh;
+}
+
+input:not(.checkbox),
+textarea,
+button {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+button {
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:active {
+  opacity: 0.6;
+}
+
+header {
+  padding: 2rem 1rem;
+  margin: 0 auto;
+  max-width: 75rem; /* 1200px */
+  width: 100%;
+}
+
+header h1 {
+  color: var(--gray);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+header form {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+header form input[type="text"] {
+  width: 100%;
+  padding: 1.2rem;
+  background-color: var(--darker);
+  border-radius: 1rem;
+  margin-right: 0.5rem;
+  color: var(--light);
+  font-size: 1.25rem;
+}
+
+header form input[type="text"]::placeholder {
+  color: var(--gray);
+}
+
+header form button {
+  color: var(--pink);
+  font-size: 1.25rem;
+  font-weight: 700;
+  background-image: linear-gradient(to right, var(--pink), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 1rem;
+  min-width: fit-content;
+}
+
+main {
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 0.5rem 1.5rem;
+}
+
+main h2 {
+  color: var(--gray);
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+main .complete {
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+}
+
+main .complete p {
+  background-image: linear-gradient(to right, var(--pink), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+main .checkbox {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 1rem;
+}
+
+main .task {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  background-color: var(--darkest);
+  padding: 1.2rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+main .task.done {
+  background-color: var(--gray);
+  opacity: 0.5;
+  position: relative;
+  text-decoration: line-through;
+  user-select: none;
+  transition: var(--transition);
+}
+
+main .task.done::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 2px;
+  background-color: var(--light);
+  z-index: 1;
+}
+
+main .task.done::before {
+  content: "Completed";
+  position: absolute;
+  font-size: 1.5rem;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--gray);
+  padding: 0.25rem 1rem;
+  z-index: 2;
+}
+
+main .task .content {
+  flex: 1 1 0%;
+}
+
+main .task .text {
+  color: var(--light);
+  font-size: 1.125rem;
+  display: block;
+  transition: var(--transition);
+  min-width: 100%;
+  resize: none;
+}
+
+main .task .text:not(:read-only) {
+  color: var(--pink);
+}
+
+main .task .actions {
+  display: flex;
+  gap: 1rem;
+  margin-left: 0.25rem;
+}
+
+main .task .actions button {
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+main .task .actions .edit {
+  background-image: linear-gradient(to right, var(--pink), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+main .task .actions .delete {
+  color: crimson;
+}
+
+@media (max-width: 767px) {
+  header form input[type="text"] {
+    font-size: 0.8rem;
+  }
+
+  main .task .text {
+    color: var(--light);
+    font-size: 0.8rem;
+  }
+
+  header form button {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+
+  main .task .actions {
+    gap: 0.5rem;
+    flex-direction: column;
+  }
+
+  main .task .actions button {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 350px) {
+  main .task .actions button {
+    font-size: 0.8rem;
+  }
+}
