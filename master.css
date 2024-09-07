@@ -11,8 +11,10 @@ Variables
   --pink: #ec4899;
   --purple: #8b5cf6;
   --transition: 0.4s;
+  --transition-2: 1s;
 }
 
+/* Start Of Global Styles*/
 * {
   box-sizing: border-box;
   margin: 0;
@@ -47,6 +49,7 @@ button:hover {
 button:active {
   opacity: 0.6;
 }
+/*End Of Global Styles*/
 
 header {
   padding: 2rem 1rem;
@@ -139,6 +142,7 @@ main .task {
   padding: 1.2rem;
   border-radius: 1rem;
   margin-bottom: 1rem;
+  animation: disappear var(--transition-2) ease-in-out;
 }
 
 main .task.done {
@@ -261,6 +265,15 @@ main .task .actions .delete {
   to {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes disappear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
